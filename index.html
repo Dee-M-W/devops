@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Simulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .dice-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .dice {
+            width: 60px;
+            height: 60px;
+            margin: 0 10px;
+            border: 2px solid #000;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #fff;
+        }
+        .dice.selected {
+            background-color: lightblue;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dice Simulator</h1>
+    <p>Click to roll up to 3 dice!</p>
+
+    <div class="dice-container">
+        <div class="dice" id="dice1">1</div>
+        <div class="dice" id="dice2">1</div>
+        <div class="dice" id="dice3">1</div>
+    </div>
+
+    <button id="rollButton">Roll Dice</button>
+
+    <script>
+        // Get the dice elements
+        const dice1 = document.getElementById('dice1');
+        const dice2 = document.getElementById('dice2');
+        const dice3 = document.getElementById('dice3');
+
+        // Get the roll button
+        const rollButton = document.getElementById('rollButton');
+
+        // Array to keep track of the dice elements
+        const diceElements = [dice1, dice2, dice3];
+
+        // Event listener for the dice click to toggle selection
+        diceElements.forEach(dice => {
+            dice.addEventListener('click', () => {
+                dice.classList.toggle('selected');
+            });
+        });
+
+        // Function to roll the dice
+        function rollDice() {
+            // Loop through each dice element
+            diceElements.forEach(dice => {
+                // Check if dice is selected
+                if (dice.classList.contains('selected')) {
+                    // Random number between 1 and 6
+                    const roll = Math.floor(Math.random() * 6) + 1;
+                    dice.textContent = roll;  // Update dice face with the rolled number
+                }
+            });
+        }
+
+        // Roll button functionality
+        rollButton.addEventListener('click', rollDice);
+    </script>
+</body>
+</html>

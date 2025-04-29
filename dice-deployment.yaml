@@ -1,0 +1,20 @@
+# dice-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dice-simulator
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dice-simulator
+  template:
+    metadata:
+      labels:
+        app: dice-simulator
+    spec:
+      containers:
+      - name: dice-simulator
+        image: yourusername/dice-simulator:latest
+        ports:
+        - containerPort: 80
